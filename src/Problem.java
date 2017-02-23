@@ -39,16 +39,27 @@ public class Problem{
 
   }
 
-  public void solve(String output){
-    // do stuff
+
+  public void sortCaches(){
+    for(Endpoint e : endpoints)
+      e.sort_by_cache_size();
+  }
+
+  public void sortRequests(){
     Collections.sort(requests,
       new Comparator<Request>(){
         @Override
         public int compare(Request a, Request b){
-          return Integer.compare(b.number, a.number);
+          return Float.compare((float)b.number /videos[b.video_id].size, (float)a.number /videos[b.video_id].size);
         }
       }
     );
+  }
+
+  public void solve(String output){
+    sortCaches();
+    sortRequests();
+
     genOutput(output);
   }
 
