@@ -23,7 +23,8 @@ public class Problem{
     try {
 			PrintWriter writer = new PrintWriter(output , "UTF-8");
       writer.println("coucou");
-
+      
+      writer.close();
 
     } catch (FileNotFoundException e) {
       e.printStackTrace();
