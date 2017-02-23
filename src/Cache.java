@@ -21,6 +21,9 @@ public class Cache{
   void add(Video v){
     videos.add(v);
     size_left -= v.size;
+    if(size_left < 0){
+      System.out.println("negative cache size");
+    }
   }
 
   @Override
