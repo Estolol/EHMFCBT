@@ -41,6 +41,14 @@ public class Problem{
 
   public void solve(String output){
     // do stuff
+    Collections.sort(requests,
+      new Comparator<Request>(){
+        @Override
+        public int compare(Request a, Request b){
+          return Integer.compare(b.number, a.number);
+        }
+      }
+    );
     genOutput(output);
   }
 
