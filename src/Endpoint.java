@@ -19,21 +19,22 @@ public class Endpoint{
     this.Ld = Ld;
     this.nb_cache = nb_cache;
     caches = new HashMap<Integer, Integer>(nb_cache);
-    sorted_caches = new LinkedList<Integer>;
+    sorted_caches = new LinkedList<Integer>();
   }
 
   public void add(int cache_id, int latency){
-    caches.add(cache_id, latency);
+    caches.put(cache_id, latency);
     sorted_caches.add(cache_id);
   }
 
   public void sort_by_cache_size(){
     Collections.sort(sorted_caches,
-      new Comparator<Integer>{
-        public int compare(int a, int b){
+      new Comparator<Integer>(){
+        @Override
+        public int compare(Integer a, Integer b){
           return Integer.compare(caches.get(a), caches.get(b));
         }
       }
-    )
+    );
   }
 }
