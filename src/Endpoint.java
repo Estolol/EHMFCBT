@@ -23,7 +23,7 @@ public class Endpoint{
   }
 
   public void add(int cache_id, int latency){
-    caches.add(cache_id, latency);
+    caches.put(cache_id, latency);
     sorted_caches.add(cache_id);
   }
 
