@@ -7,44 +7,34 @@ import java.io.Writer;
 import java.lang.Math;
 
 public class Problem{
-
-  int videos, endpoints, requests, cache, capacity;
-  int[] size, latency_dc, connected_caches, requests_video, requests_endpoint, requests_number;;
-  int[][] cache_id, latency_cache;
+  Video[] videos;
+  LinkedList<Request> requests;
+  Cache[] caches;
+  Endpoint[] endpoints;
+  int videos_num, endpoints_num, requests_num, cache_num, capacity;
 
   public Problem(Scanner in){
-    this.videos = in.nextInt();
-    System.out.println(videos);
-    this.endpoints = in.nextInt();
-    this.requests = in.nextInt();
-    this.cache = in.nextInt();
+    videos_num = in.nextInt();
+    System.out.println(videos_num);
+    this.endpoints_num = in.nextInt();
+    this.requests_num = in.nextInt();
+    this.cache_num = in.nextInt();
     this.capacity = in.nextInt();
-    size = new int[this.videos];
-    for (int i = 0; i < videos; i ++) {
-      size[i] = in.nextInt();
+    videos = new Video[this.videos_num];
+    for (int i = 0; i < videos_num; i ++) {
+      videos[i] = new Video(i,in.nextInt());
     }
-    this.latency_dc = new int[this.endpoints];
-    this.connected_caches = new int[this.endpoints];
-    cache_id = new int[this.endpoints][];
-    latency_cache = new int[this.endpoints][];
-    for(int j = 0; j < endpoints;j++){
-      latency_dc[j] = in.nextInt();
-      connected_caches[j] = in.nextInt();
-      cache_id[j] = new int[connected_caches[j]];
-      latency_cache[j] = new int[connected_caches[j]];
-      for (int i = 0; i < connected_caches[j]; i++) {
-        cache_id[j][i] = in.nextInt();
-        latency_cache[j][i] = in.nextInt();
+    endpoints = new Endpoint[this.endpoints_num];
+    for(int j = 0; j < endpoints_num;j++){
+      endpoints[j] = new Endpoint(in.nextInt(),in.nextInt());
+      for (int i = 0; i < endpoints[j].nb_cache; i++) {
+        endpoints[j].caches.put(in.nextInt(), in.nextInt());
       }
     }
 
-    requests_video = new int[requests];
-    requests_endpoint = new int[requests];
-    requests_number = new int[requests];
-    for (int i = 0; i < requests; i++) {
-      requests_video[i] = in.nextInt();
-      requests_endpoint[i] = in.nextInt();
-      requests_number[i] = in.nextInt();
+    requests = new LinkedList<Request>;
+    for (int i = 0; i < requests_num; i++) {
+      requests.add(new Request(in.nextInt(),in.nextInt(),in.nextInt()));
     }
 
   }

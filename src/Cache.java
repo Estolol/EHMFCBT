@@ -12,7 +12,7 @@ public class Cache{
   LinkedList<Video> videos;
   int size_left;
 
-  public cache(int X){
+  public Cache(int X){
     videos = new LinkedList<Video>();
     size_left = X;
   }
