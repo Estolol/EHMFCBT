@@ -20,7 +20,7 @@ public class Cache{
 
   @Override
   public String toString(){
-    String out = id.toString();
+    String out = Integer.toString(id);
     for(Video vid:videos)
       out+=" "+vid.id;
     return out;
