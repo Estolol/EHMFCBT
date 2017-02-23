@@ -12,6 +12,7 @@ public class Problem{
   Cache[] caches;
   Endpoint[] endpoints;
   int videos_num, endpoints_num, requests_num, cache_num, capacity;
+  HashSet<Cache> touched = new HashSet<Cache>();
 
   public Problem(Scanner in){
     videos_num = in.nextInt();
@@ -85,6 +86,7 @@ public class Problem{
         for(int i:e.sorted_caches){
           Cache c = caches[i];
           best_cache.add(v);
+          touched.add(best_cache);
         }
       }
     }
@@ -94,15 +96,15 @@ public class Problem{
     sortCaches();
     sortRequests();
     addVideos();
-
     genOutput(output);
   }
 
   public void genOutput(String output){
     try {
 			PrintWriter writer = new PrintWriter(output , "UTF-8");
-      writer.println("coucou");
-
+      writer.println(touched.size());
+      for(Cache c:touched)
+        writer.println(c.toString());
       writer.close();
 
     } catch (FileNotFoundException e) {
