@@ -20,6 +20,9 @@ public class Problem{
     this.requests_num = in.nextInt();
     this.cache_num = in.nextInt();
     this.capacity = in.nextInt();
+    for(int i=0; i < cache_num;i++){
+      caches[i] = new Cache(i,capacity);
+    }
     videos = new Video[this.videos_num];
     for (int i = 0; i < videos_num; i ++) {
       videos[i] = new Video(i,in.nextInt());
