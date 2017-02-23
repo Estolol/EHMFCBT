@@ -9,13 +9,18 @@ import java.io.IOException;
 
 public class Cache{
   int id;
-  LinkedList<Video> videos;
+  HashSet<Video> videos;
   int size_left;
 
   public Cache(int id, int X){
     this.id = id;
-    videos = new LinkedList<Video>();
+    videos = new HashSet<Video>();
     size_left = X;
+  }
+
+  void add(Video v){
+    videos.add(v);
+    size_left -= v.size;
   }
 
   @Override
