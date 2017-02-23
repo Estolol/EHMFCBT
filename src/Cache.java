@@ -8,13 +8,22 @@ import java.lang.Math;
 import java.io.IOException;
 
 public class Cache{
-
+  int id;
   LinkedList<Video> videos;
   int size_left;
 
-  public Cache(int X){
+  public Cache(int id, int X){
+    this.id = id;
     videos = new LinkedList<Video>();
     size_left = X;
+  }
+
+  @Override
+  public String toString(){
+    String out = id.toString();
+    for(Video vid:videos)
+      out+=" "+vid.id;
+    return out;
   }
 
 }
