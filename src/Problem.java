@@ -8,38 +8,45 @@ import java.lang.Math;
 
 public class Problem{
 
-  int V, E, R, C, X, Ld, K;
-  int[] S, c, Lc, Rv, Re, Rn;
+  int videos, endpoints, requests, cache, capacity;
+  int[] size, latency_dc, connected_caches, requests_video, requests_endpoint, requests_number;;
+  int[][] cache_id, latency_cache;
 
   public Problem(Scanner in){
-    this.V = in.nextInt();
-    System.out.println(V);
-    this.E = in.nextInt();
-    this.R = in.nextInt();
-    this.C = in.nextInt();
-    this.X = in.nextInt();
-    S = new int[this.V];
-    for (int i = 0; i < V; i ++) {
-      S[i] = in.nextInt();
+    this.videos = in.nextInt();
+    System.out.println(videos);
+    this.endpoints = in.nextInt();
+    this.requests = in.nextInt();
+    this.cache = in.nextInt();
+    this.capacity = in.nextInt();
+    size = new int[this.videos];
+    for (int i = 0; i < videos; i ++) {
+      size[i] = in.nextInt();
+    }
+    this.latency_dc = new int[this.endpoints];
+    this.connected_caches = new int[this.endpoints];
+    cache_id = new int[this.endpoints][];
+    latency_cache = new int[this.endpoints][];
+    for(int j = 0; j < endpoints;j++){
+      latency_dc[j] = in.nextInt();
+      connected_caches[j] = in.nextInt();
+      cache_id[j] = new int[connected_caches[j]];
+      latency_cache[j] = new int[connected_caches[j]];
+      for (int i = 0; i < connected_caches[j]; i++) {
+        cache_id[j][i] = in.nextInt();
+        latency_cache[j][i] = in.nextInt();
+      }
     }
 
-    this.Ld = in.nextInt();
-    this.K = in.nextInt();
-    c = new int[K];
-    Lc = new int[K];
-    for (int i = 0; i < K; i++) {
-      c[i] = in.nextInt();
-      Lc[i] = in.nextInt();
+    requests_video = new int[requests];
+    requests_endpoint = new int[requests];
+    requests_number = new int[requests];
+    for (int i = 0; i < requests; i++) {
+      requests_video[i] = in.nextInt();
+      requests_endpoint[i] = in.nextInt();
+      requests_number[i] = in.nextInt();
     }
 
-    Rv = new int[R];
-    Re = new int[R];
-    Rn = new int[R];
-    for (int i = 0; i < R; i++) {
-      Rv[i] = in.nextInt();
-      Re[i] = in.nextInt();
-      Rn[i] = in.nextInt();
-    }
   }
 
   public void solve(String output){
