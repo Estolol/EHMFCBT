@@ -13,7 +13,6 @@ public class Endpoint{
   int nb_cache;
   HashMap<Integer, Integer> caches;
   LinkedList<Integer> sorted_caches;
-  int current_cache_pos;
 
   public Endpoint(int Ld, int nb_cache){
     this.Ld = Ld;
