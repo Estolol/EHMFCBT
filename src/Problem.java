@@ -28,7 +28,7 @@ public class Problem{
     for(int j = 0; j < endpoints_num;j++){
       endpoints[j] = new Endpoint(in.nextInt(),in.nextInt());
       for (int i = 0; i < endpoints[j].nb_cache; i++) {
-        endpoints[j].caches.put(in.nextInt(), in.nextInt());
+        endpoints[j].add(in.nextInt(), in.nextInt());
       }
     }
 
