@@ -20,6 +20,7 @@ public class Problem{
     this.requests_num = in.nextInt();
     this.cache_num = in.nextInt();
     this.capacity = in.nextInt();
+    this.caches = new Cache[cache_num];
     for(int i=0; i < cache_num;i++){
       caches[i] = new Cache(i,capacity);
     }
@@ -59,9 +60,40 @@ public class Problem{
     );
   }
 
+  public void addVideos(){
+    for(Request r : requests){
+      Video v = videos[r.video_id];
+      Endpoint e = endpoints[r.endpoint_id];
+      boolean contains=true;
+      Cache best_cache = null;
+      for(int i:e.sorted_caches){
+        Cache c = caches[i];
+        if(c.size_left >= v.size){
+          best_cache = c;
+          break;
+        }
+      }
+      if(best_cache == null) break;
+      for(int i:e.sorted_caches){
+        Cache c = caches[i];
+        if(c.videos.contains(v) && e.caches.get(best_cache.id)*2 < e.caches.get(c)){
+          contains = true;
+          break;
+        }
+      }
+      if(!contains){
+        for(int i:e.sorted_caches){
+          Cache c = caches[i];
+          best_cache.add(v);
+        }
+      }
+    }
+  }
+
   public void solve(String output){
     sortCaches();
     sortRequests();
+    addVideos();
 
     genOutput(output);
   }
