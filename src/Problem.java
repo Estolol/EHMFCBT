@@ -32,7 +32,7 @@ public class Problem{
       }
     }
 
-    requests = new LinkedList<Request>;
+    requests = new LinkedList<Request>();
     for (int i = 0; i < requests_num; i++) {
       requests.add(new Request(in.nextInt(),in.nextInt(),in.nextInt()));
     }
