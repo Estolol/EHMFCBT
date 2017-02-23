@@ -2,3 +2,4 @@ bin/*.class
 
 input/*
 output/*
+src/Problem.class
