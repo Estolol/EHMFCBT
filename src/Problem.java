@@ -74,19 +74,20 @@ public class Problem{
           break;
         }
       }
-      if(best_cache == null) break;
-      for(int i:e.sorted_caches){
-        Cache c = caches[i];
-        if(c.videos.contains(v)
-         && e.caches.get(best_cache.id)*2
-         < e.caches.get(i)){
-          contains = true;
-          break;
+      if(best_cache != null){
+        for(int i:e.sorted_caches){
+          Cache c = caches[i];
+          if(c.videos.contains(v)
+           && e.caches.get(best_cache.id)*2
+           > e.caches.get(i)){
+            contains = true;
+            break;
+          }
         }
-      }
-      if(!contains){
-        best_cache.add(v);
-        touched.add(best_cache);
+        if(!contains){
+          best_cache.add(v);
+          touched.add(best_cache);
+        }
       }
     }
   }
